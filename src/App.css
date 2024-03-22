@@ -188,3 +188,30 @@ button {
 button:hover {
   background-color: #45a049;
 }
+
+
+.qr-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+}
+
+.qr-img {
+  display: flex;
+  align-items: center; /* Center vertically */
+  margin-top: 10px; /* Adjust as needed */
+}
+
+.qr-img img {
+  margin-right: 5px; /* Add some space between the image and text */
+}
+
+
+.list-unstyled {
+  list-style-type: decimal; /* Display numbers */
+  padding-left: 20px; /* Adjust the left padding for the numbers */
+}
+
+.list-unstyled li {
+  margin-bottom: 10px;
+  margin-left: 10px;
+}

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { SideBar } from "./SideBar";
 
 const BasicChatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -30,8 +31,8 @@ const BasicChatbot = () => {
   const generateBotResponse = (userInput) => {
     // Define your question-answer pairs here
     const qaPairs = [
-      {question: "What is the function of a court?",
-        
+      {
+        question: "What is the function of a court?",
         answer:
           "Courts serve as forums for resolving disputes, interpreting laws, and ensuring justice is served.",
       },
@@ -40,12 +41,6 @@ const BasicChatbot = () => {
         answer:
           "Courts handle a wide range of cases, including criminal cases, civil cases, family law cases, and administrative cases.",
       },
-      {
-        question: "How much the fee does the lawyer get from us?",
-        answer:
-          "Well, the fees for a lawyer can vary depending on the type of case and the lawyer's experience. It's best to consult with a lawyer directly to get an accurate estimate.",
-      },
-
       // Add more question-answer pairs as needed
     ];
 
@@ -59,48 +54,75 @@ const BasicChatbot = () => {
   };
 
   return (
-    <div className="chatbot-container">
-      <div className="chatbot-messages">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender}`}>
-            {message.sender === "user" ? (
-              <div className="user-message">
-                <div className="user-icon">
-                  <i className="fas fa-user"></i>
-                </div>
-                <div className="message-text">{message.text}</div>
-              </div>
-            ) : null}
-            {message.sender === "bot" ? (
-              <div className="bot-message">
-                <div className="bot-icon">
-                  <img
-                    src="assets\chatbot logo.jpg"
-                    style={{ width: "30px" }}
-                  />
-                </div>
-                <div className="message-text">{message.text}</div>
-              </div>
-            ) : null}
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
+    <>
+      <SideBar />
+      <div
+        className="top-head"
+        style={{
+          backgroundColor: "#e94545",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <h4 className="mt-1" style={{ color: "white" }}>
+          CHATBOT
+        </h4>
       </div>
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Type your message..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              handleMessageSubmit();
-            }
-          }}
-        />
-        <button onClick={handleMessageSubmit}>Send</button>
+      <div className="chatbot-container">
+        <div className="chatbot-messages">
+          {messages.length === 0 ? (
+            <div
+              className="card text-center mx-auto mt-3"
+              style={{ maxWidth: "400px" }}
+            >
+              <div className="card-body">
+                <p className="card-text">No messages yet here!!!</p>
+              </div>
+            </div>
+          ) : (
+            messages.map((message, index) => (
+              <div key={index} className={`message ${message.sender}`}>
+                {message.sender === "user" ? (
+                  <div className="user-message">
+                    <div className="user-icon">
+                      <i className="fas fa-user"></i>
+                    </div>
+                    <div className="message-text">{message.text}</div>
+                  </div>
+                ) : null}
+                {message.sender === "bot" ? (
+                  <div className="bot-message">
+                    <div className="bot-icon">
+                      <img
+                        src="assets\chatbot logo.jpg"
+                        style={{ width: "30px" }}
+                        alt="chatbot"
+                      />
+                    </div>
+                    <div className="message-text">{message.text}</div>
+                  </div>
+                ) : null}
+              </div>
+            ))
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+        <div className="input-container">
+          <input
+            type="text"
+            placeholder="Type your message..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleMessageSubmit();
+              }
+            }}
+          />
+          <button onClick={handleMessageSubmit}>Send</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

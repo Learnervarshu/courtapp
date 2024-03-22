@@ -4,11 +4,19 @@ import { useNavigate } from "react-router-dom";
 export const ClientReg = () => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/clientDashboard");
+    navigate("/verification");
   };
   return (
-    <div className="container-fluid position-relative">
+    <div className="container-fluid position-relative" style={{ height: "100vh" }}>
       <div className="triangle-top-left"></div>
+      <div className="icon-top-left">
+        <img
+          src="assets\images.jpg"
+          className="d-block"
+          alt="court logo"
+          style={{ width: "70px", borderRadius: "25px" }}
+        ></img>
+      </div>
       <div className="row mt-5 mb-5 justify-content-center align-item-center">
         <div className="col-12 col-md-6 col-lg-4 mt-3 mb-5">
           {/* <div className="text-center"> */}
@@ -71,6 +79,5 @@ export const ClientReg = () => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
